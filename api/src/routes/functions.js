@@ -15,10 +15,10 @@ const getApiInfo = async () => {
       return {
         id: e.id,
         name: e.name,
-        height: e.height,
-        weight: e.weight,
+        height: e.height.metric,
+        weight: e.weight.metric,
         life_span: e.life_span,
-        image: e.image,
+        image: e.image.url,
       };
     });
     return datainfo;
@@ -39,13 +39,12 @@ const getDbInfo = async () => {
   });
 };
 
-
-  const getAllDogs = async () => {
-    const apiInfo = await getApiInfo();
-    const dbInfo = await getDbInfo();
-    const allDogs = apiInfo.concat(dbInfo);
-    return allDogs
-  };
+const getAllDogs = async () => {
+  const apiInfo = await getApiInfo();
+  const dbInfo = await getDbInfo();
+  const allDogs = [...apiInfo, ...dbInfo];
+  return allDogs;
+};
 
 module.exports = {
   getApiInfo,
