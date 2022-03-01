@@ -4,7 +4,7 @@ const { API_KEY } = process.env;
 
 const url = `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`;
 
-// conseguir todos los perros
+// conseguir todos los perros de la api
 
 const getApiInfo = async () => {
   try {
@@ -19,6 +19,7 @@ const getApiInfo = async () => {
         weight: e.weight.metric,
         life_span: e.life_span,
         image: e.image.url,
+        temperament: e.temperament,
       };
     });
     return datainfo;
@@ -27,6 +28,7 @@ const getApiInfo = async () => {
   }
 };
 
+// conseguir todos los perros de la BD
 const getDbInfo = async () => {
   return await Dog.findAll({
     include: {
@@ -39,6 +41,32 @@ const getDbInfo = async () => {
   });
 };
 
+// conseguir todos los temperamentos de la api y guardarlos en la BD
+const getTemperaments = async () => {
+  try {
+    const temperamentsApi = await getApiInfo();
+    const temperamentsAll = await temperamentsApi
+      .map((e) => e.temperament)
+      .toString()
+      .trim()
+      .split(/\s*,\s*/);
+    const temperamentsList = [...new Set(temperamentsAll)]; // quitamos temperamentos repetidos
+
+    const temperamentsUnique = temperamentsList.filter(Boolean);
+
+    temperamentsUnique.forEach((e) => {
+      Temperament.findOrCreate({
+        where: { name: e },
+      });
+    });
+
+    return temperamentsUnique;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//unión de api con bd
 const getAllDogs = async () => {
   const apiInfo = await getApiInfo();
   const dbInfo = await getDbInfo();
@@ -50,4 +78,5 @@ module.exports = {
   getApiInfo,
   getDbInfo,
   getAllDogs,
+  getTemperaments,
 };

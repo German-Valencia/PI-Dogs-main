@@ -1,6 +1,6 @@
 const express = require("express");
-const { Dog } = require("../db");
 const { getAllDogs } = require("./functions");
+const { Dog, Temperament } = require("../db");
 
 const router = express.Router();
 
@@ -36,6 +36,41 @@ router.get("/:id", async (req, res) => {
   } catch (error) {
     console.error(error);
   }
+});
+
+router.post("/", async (req, res) => {
+  let {
+    id,
+    name,
+    height_min,
+    height_max,
+    weight_min,
+    weight_max,
+    life_span_min,
+    life_span_max,
+    image,
+    temperament,
+    createdInDb,
+  } = req.body;
+  let dogsCreated = await Dog.create({
+    id,
+    name,
+    height_min,
+    height_max,
+    weight_min,
+    weight_max,
+    life_span_min,
+    life_span_max,
+    image,
+    temperament,
+    createdInDb,
+  });
+  let temperamentDb = await Temperament.findAll({
+    where: { name: temperament },
+  });
+
+  dogsCreated.addTemperament(temperamentDb);
+  res.send("Dog created successfully");
 });
 
 module.exports = router;
