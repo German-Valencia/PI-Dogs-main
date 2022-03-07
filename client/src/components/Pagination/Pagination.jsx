@@ -3,7 +3,7 @@ import styles from "./Pagination.module.css";
 
 function Pagination({ dogsPerPage, allDogs, pagination }) {
   const pageNumbers = [];
-  for (let i = 0; i <= Math.ceil(allDogs / dogsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(allDogs / dogsPerPage); i++) {
     pageNumbers.push(i);
   }
   return (
