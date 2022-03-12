@@ -9,14 +9,14 @@ import {
   ORDER_WEIGHT,
   POST_DOG,
   GET_DETAILS,
-  CLEAN_DETAILS,
+  CLEAN_DETAIL,
 } from "../actions";
 
 const initialState = {
   dogs: [],
-  allDogs: [],
   temperaments: [],
   dogDetail: [],
+  allDogs: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -46,9 +46,9 @@ const rootReducer = (state = initialState, { type, payload }) => {
       let copy = state.allDogs;
       let createdFiltered;
       if (payload === "created") {
-        createdFiltered = copy.filter((e) => e.createInDb);
+        createdFiltered = copy.filter((e) => e.createdInDb);
       } else if (payload === "api") {
-        createdFiltered = copy.filter((e) => !e.createInDb);
+        createdFiltered = copy.filter((e) => !e.createdInDb);
       } else {
         createdFiltered = copy;
       }
@@ -61,7 +61,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
       let temperamentFiltered =
         payload === "all"
           ? copy2
-          : copy2.filter((e) => e.temperaments.some((e) => e.name === payload));
+          : copy2.filter((e) => {
+              if (e.temperament) {
+                if (e.temperament.includes(payload)) {
+                  return e;
+                }
+              }
+              return false;
+            });
       if (temperamentFiltered.length <= 0) {
         temperamentFiltered = copy2;
         alert("There are no dog of indicated temperament");
@@ -70,36 +77,51 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         dogs: temperamentFiltered,
       };
+
     case ORDER_NAME:
-      let copy3 = state.dogs;
+      let copy3 = state.allDogs;
       let sortedName =
         payload === "asc"
           ? copy3.sort((a, b) => {
-              return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+              return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
             })
           : copy3.sort((a, b) => {
-              return b.name.toLowerCase().localeCompare(a.name.toLowerCase());
+              return a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1;
             });
       return {
         ...state,
         dogs: sortedName,
       };
+
     case ORDER_WEIGHT:
-      let copy4 = state.dogs;
+      let copy4 = state.allDogs;
       let sortedWeight =
         payload === "asc"
-          ? copy4.sort((a, b) => a.weight - b.weight)
-          : copy4.sort((a, b) => b.weight - a.weight);
+          ? copy4.sort((a, b) => {
+              let pesoA = parseInt(a.weight.split("-")[0]);
+              let pesoB = parseInt(b.weight.split("-")[0]);
+              if (pesoA > pesoB) return 1;
+              if (pesoA < pesoB) return -1;
+              else return 0;
+            })
+          : copy4.sort((a, b) => {
+              let pesoA = parseInt(a.weight.split("-")[0]);
+              let pesoB = parseInt(b.weight.split("-")[0]);
+              if (pesoA < pesoB) return 1;
+              if (pesoA > pesoB) return -1;
+              else return 0;
+            });
       return {
         ...state,
         dogs: sortedWeight,
       };
+
     case GET_DETAILS:
       return {
         ...state,
         dogDetail: payload,
       };
-    case CLEAN_DETAILS:
+    case CLEAN_DETAIL:
       return {
         ...state,
         dogDetail: payload,

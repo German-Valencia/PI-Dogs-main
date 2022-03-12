@@ -69,7 +69,9 @@ export default function Home() {
                         id={e.id}
                         name={e.name}
                         image={e.image}
-                        temperament={e.temperament}
+                        temperament={e.temperament ? e.temperament: e.temperaments && e.temperaments.map((e)=>
+                        e.name.concat(" ")  
+                        )}                       
                         weight={e.weight}
                       />
                     </div>

@@ -39,38 +39,33 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  let {
-    id,
-    name,
-    height_min,
-    height_max,
-    weight_min,
-    weight_max,
-    life_span_min,
-    life_span_max,
-    image,
-    temperament,
-    createdInDb,
-  } = req.body;
-  let dogsCreated = await Dog.create({
-    id,
-    name,
-    height_min,
-    height_max,
-    weight_min,
-    weight_max,
-    life_span_min,
-    life_span_max,
-    image,
-    temperament,
-    createdInDb,
-  });
-  let temperamentDb = await Temperament.findAll({
-    where: { name: temperament },
-  });
-
-  dogsCreated.addTemperament(temperamentDb);
-  res.send("Dog created successfully");
+  const { name, height, weight, life_span, temperament, image } = req.body;
+  try {
+    if (name) {
+      const allDog = await getAllDogs();
+      const isDog = allDog.find((e) => e.name === name.toLowerCase());
+      if (!isDog) {
+        const dog = await Dog.create({
+          name,
+          height,
+          weight,
+          life_span,
+          image,
+        });
+        const temperamentDb = await Temperament.findAll({
+          where: {
+            name: temperament,
+          },
+        });
+        await dog.addTemperament(temperamentDb);
+        return res.status(201).send("successfully created dog");
+      }
+      return res.status(404).send("Dog name already exist");
+    }
+    if (!name) return res.status(404).send("Dog name is obligatory");
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 module.exports = router;

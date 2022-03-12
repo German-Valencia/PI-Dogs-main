@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   const temperaments = await getTemperaments();
-  const allTemperaments = await Temperament.findAll();
+  const allTemperaments = await Temperament.findAll({ order: [['name', 'ASC'],] });
   return res.status(200).send(allTemperaments);
 });
 

@@ -10,7 +10,7 @@ export const FILTER_TEMPERAMENT = "FILTER_TEMPERAMENT";
 export const ORDER_WEIGHT = "ORDER_WEIGHT";
 export const GET_DETAILS = "GET_DETAILS";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
-export const POST_POKEMON = "POST_POKEMON"
+export const POST_DOG = "POST_DOG"
 
 export function getDogs() {
   return async function (dispatch) {
@@ -30,7 +30,7 @@ export function getDogsByName(payload) {
   return async (dispatch) => {
     try {
       const json = await axios.get(
-        `http://localhost:3001/pokemons?name=${payload}`
+        `http://localhost:3001/dogs?name=${payload}`
       );
       return dispatch({
         type: GET_DOGS_BY_NAME,
@@ -112,7 +112,7 @@ export function cleanDetail(dispatch) {
   });
 }
 
-export function posDog(payload) {
+export function postDog(payload) {
   return async () => {
     try {
       const createDog = await axios.post("http://localhost:3001/dogs", payload);

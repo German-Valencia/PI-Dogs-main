@@ -20,6 +20,7 @@ const getApiInfo = async () => {
         life_span: e.life_span,
         image: e.image.url,
         temperament: e.temperament,
+        temperaments: e.temperaments,
       };
     });
     return datainfo;

@@ -12,7 +12,7 @@ import styles from "./Filters.module.css";
 
 const Filters = ({ setCurrentPage, setOrder }) => {
   const dispatch = useDispatch();
-  const allTemperaments = useSelector((state) => state.temperament);
+  const allTemperaments = useSelector((state) => state.temperaments);
 
   useEffect(() => {
     dispatch(getAllTemperaments());
@@ -28,6 +28,7 @@ const Filters = ({ setCurrentPage, setOrder }) => {
     e.preventDefault();
     dispatch(orderName(e.target.value));
     setCurrentPage(1);
+    setOrder(e.target.value)
   };
 
   const handleFilterTemperament = (e) => {
@@ -36,7 +37,7 @@ const Filters = ({ setCurrentPage, setOrder }) => {
     setCurrentPage(1);
   };
 
-  const handleFilterWeight = (e) => {
+  const handleOrderWeight = (e) => {
     e.preventDefault();
     dispatch(orderWeight(e.target.value));
     setCurrentPage(1);
@@ -88,7 +89,7 @@ const Filters = ({ setCurrentPage, setOrder }) => {
           <option
             value="asc"
             onClick={(e) => {
-              handleFilterWeight(e);
+              handleOrderWeight(e);
             }}
           >
             ASC
@@ -96,7 +97,7 @@ const Filters = ({ setCurrentPage, setOrder }) => {
           <option
             value="desc"
             onClick={(e) => {
-              handleFilterWeight(e);
+              handleOrderWeight(e);
             }}
           >
             DESC
@@ -108,7 +109,7 @@ const Filters = ({ setCurrentPage, setOrder }) => {
               handleOrderName(e);
             }}
           >
-            ASC
+            A-Z
           </option>
           <option
             value="desc"
@@ -116,7 +117,7 @@ const Filters = ({ setCurrentPage, setOrder }) => {
               handleOrderName(e);
             }}
           >
-            DESC
+            Z-A
           </option>
         </select>
       </div>
