@@ -70,7 +70,7 @@ export default function Home() {
                         name={e.name}
                         image={e.image}
                         temperament={e.temperament ? e.temperament: e.temperaments && e.temperaments.map((e)=>
-                        e.name.concat(" ")  
+                        e.name.concat(", ")  
                         )}                       
                         weight={e.weight}
                       />

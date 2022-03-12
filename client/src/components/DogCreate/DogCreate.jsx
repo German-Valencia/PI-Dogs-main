@@ -98,8 +98,8 @@ function DogCreate() {
       image: input.image,
       temperaments: input.temperaments,
     };
-console.log(crear)
-console.log(input)
+    console.log(crear);
+    console.log(input);
     if (
       !errors.name &&
       !errors.height_min &&
@@ -133,7 +133,9 @@ console.log(input)
   const handleDelete = (e) => {
     setInput({
       ...input,
-      temperaments: input.temperaments.filter((temperaments) => temperaments !== e),
+      temperaments: input.temperaments.filter(
+        (temperaments) => temperaments !== e
+      ),
     });
   };
 
@@ -155,7 +157,7 @@ console.log(input)
         <h2 className={styles.h2}>Create a Dog</h2>
         <div className={styles.div}>
           <div className={styles.divito}>
-            <label className={styles.label}>Name:</label>
+            <label className={styles.label}>Name: </label>
             <input
               className={styles.input}
               type="text"
@@ -168,7 +170,7 @@ console.log(input)
             />
             <p className={styles.p}>{errors.name}</p>
 
-            <label className={styles.label}>Height min:</label>
+            <label className={styles.label}>Height min cms: </label>
             <input
               className={styles.input}
               type="number"
@@ -181,7 +183,7 @@ console.log(input)
             />
             <p className={styles.p}>{errors.height_min}</p>
 
-            <label className={styles.label}>Height max:</label>
+            <label className={styles.label}>Height max cms: </label>
             <input
               className={styles.input}
               type="number"
@@ -194,7 +196,7 @@ console.log(input)
             />
             <p className={styles.p}>{errors.height_max}</p>
 
-            <label className={styles.label}>Weight min:</label>
+            <label className={styles.label}>Weight min Kgs: </label>
             <input
               className={styles.input}
               type="number"
@@ -207,7 +209,7 @@ console.log(input)
             />
             <p className={styles.p}>{errors.weight_min}</p>
 
-            <label className={styles.label}>Weight max:</label>
+            <label className={styles.label}>Weight max Kgs: </label>
             <input
               className={styles.input}
               type="number"
@@ -220,7 +222,7 @@ console.log(input)
             />
             <p className={styles.p}>{errors.weight_max}</p>
 
-            <label className={styles.label}>Life span min:</label>
+            <label className={styles.label}>Life span min Years: </label>
             <input
               className={styles.input}
               type="number"
@@ -233,7 +235,7 @@ console.log(input)
             />
             <p className={styles.p}>{errors.life_span_min}</p>
 
-            <label className={styles.label}>Life span max:</label>
+            <label className={styles.label}>Life span max Years: </label>
             <input
               className={styles.input}
               type="number"
@@ -246,7 +248,7 @@ console.log(input)
             />
             <p className={styles.p}>{errors.life_span_max}</p>
 
-            <label className={styles.label}>Image:</label>
+            <label className={styles.label}>Image: </label>
             <input
               className={styles.input}
               type="text"
@@ -260,6 +262,7 @@ console.log(input)
             <p className={styles.p}>{errors.image}</p>
           </div>
         </div>
+        <label className={styles.label}>Select temperaments max 4:</label>
         <div className={styles.element}>
           <select
             className={styles.select}

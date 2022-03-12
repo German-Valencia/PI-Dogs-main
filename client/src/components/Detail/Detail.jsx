@@ -24,23 +24,23 @@ function Detail(props) {
         <div className={styles.container}>
           <div className={styles.card}>
             <h2 className={styles.h2}>{myDog[0].name}</h2>
-            <p className={styles.p}>#{myDog[0].id}</p>
+            <p className={styles.text}>#{myDog[0].id}</p>
             <img
               src={myDog[0].image ? myDog[0].image : noImg}
               alt="img not found"
               height="250px"
               width="250px"
             />
-            <h5 className={styles.h5}>Temperament:</h5>
+            <h5 className={styles.text}>Temperaments:</h5>
             <div >
               <p className={styles.p}>{myDog[0].temperament ? myDog[0].temperament : myDog[0].temperaments && myDog[0].temperaments.map((e)=>
-                        e.name.concat(", ")  
+                        e.name.concat(", ")
                         )}</p>
             </div>
             <div>
-              <h5 className={styles.h5}>Height: {myDog[0].height} Cms.</h5>
-              <h5 className={styles.h5}>Weight: {myDog[0].weight} Kg.</h5>
-              <h5 className={styles.h5}>Life Span: {myDog[0].life_span}</h5>
+              <h5 className={styles.text}>Height: {myDog[0].height} Cms.</h5>
+              <h5 className={styles.text}>Weight: {myDog[0].weight} Kg.</h5>
+              <h5 className={styles.text}>Life Span: {myDog[0].life_span}</h5>
             </div>
           </div>
         </div>

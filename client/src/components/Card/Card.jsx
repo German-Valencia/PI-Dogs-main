@@ -15,16 +15,13 @@ export default function Card({ id, name, image, temperament, weight }) {
             width="200px"
             height="250vh"
           />
-          <h3 className={styles.text}>Name: </h3>
-          <h3 className={styles.text}>{name}</h3>          
-          <h3 className={styles.text}>Temperament:</h3>          
+
+          <h3 className={styles.text}><u><i>Name</i></u>: {name}</h3>
+
           <div className={styles.temperaments}>
-            <h4 className={styles.text}>
-              { temperament }
-            </h4>
-            
+            <h4 className={styles.text}><u><i>Temperaments</i></u>: {temperament}</h4>
           </div>
-          <h4 className={styles.text}>Weight: {weight}</h4>
+          <h4 className={styles.text}><u><i>Weight</i></u>: {weight} Kgs.</h4>
         </div>
       </NavLink>
     </div>
