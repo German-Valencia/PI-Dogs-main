@@ -14,9 +14,9 @@ import {
 
 const initialState = {
   dogs: [],
+  allDogs: [],
   temperaments: [],
   dogDetail: [],
-  allDogs: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -124,9 +124,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
         dogDetail: payload,
       };
     case POST_DOG:
-      return {
-        ...state,
-      };
+      return { ...state };
+
     default:
       return { ...state };
   }

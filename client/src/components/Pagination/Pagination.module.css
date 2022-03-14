@@ -36,9 +36,13 @@
   border: transparent;
 }
 
-.a:hover {
-  color: #0026ffa8;
+.a:focus{
+  color: rgb(255, 102, 0);
 }
+.a:hover {
+  color: rgb(255, 102, 0);
+}
+
 
 .pn {
   color: rgb(255, 217, 2);

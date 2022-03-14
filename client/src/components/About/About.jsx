@@ -6,9 +6,10 @@ import { NavLink } from "react-router-dom";
 function About() {
   return (
     <div className={styles.container}>
-      <div className={styles.name}>Germán A. Valencia T.</div>
+      
       <div className={styles.description}>
         <div>
+        <div className={styles.name}>Germán A. Valencia T.</div><br />
           <img className={styles.picture} src={gavt} alt="Img not found" />
         </div>
         <p>

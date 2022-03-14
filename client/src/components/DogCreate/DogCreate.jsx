@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { getAllTemperaments, postDog, cleanDogs } from "../../actions";
+import { getAllTemperaments, postDog, cleanDogs, getDogs } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./DogCreate.module.css";
 
@@ -110,7 +110,6 @@ function DogCreate() {
       !errors.image
     ) {
       dispatch(postDog(crear));
-
       setInput({
         name: "",
         height_min: "",
@@ -123,6 +122,7 @@ function DogCreate() {
         image: "",
       });
       dispatch(cleanDogs(dispatch));
+      dispatch(getDogs());
       history.push("/home");
     } else {
       alert("Error. Check the form");

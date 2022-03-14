@@ -32,14 +32,24 @@ function Detail(props) {
               width="250px"
             />
             <h5 className={styles.text}>Temperaments:</h5>
-            <div >
-              <p className={styles.p}>{myDog[0].temperament ? myDog[0].temperament : myDog[0].temperaments && myDog[0].temperaments.map((e)=>
-                        e.name.concat(", ")
-                        )}</p>
+            <div>
+              <p className={styles.p}>
+                {myDog[0].temperament
+                  ? myDog[0].temperament
+                    ? myDog[0].temperaments
+                    : myDog[0].temperaments.map((e) => e.name.concat(", "))
+                  : "Temperament Not Avaliable"}
+              </p>
             </div>
             <div>
               <h5 className={styles.text}>Height: {myDog[0].height} Cms.</h5>
-              <h5 className={styles.text}>Weight: {myDog[0].weight} Kg.</h5>
+              <h5 className={styles.text}>
+                Weight:{" "}
+                {myDog[0].weight.includes("NaN")
+                  ? "Weigth Not Avaliable"
+                  : myDog[0].weight}{" "}
+                Kg.
+              </h5>
               <h5 className={styles.text}>Life Span: {myDog[0].life_span}</h5>
             </div>
           </div>
