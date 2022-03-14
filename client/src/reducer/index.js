@@ -1,15 +1,15 @@
 import {
   GET_DOGS,
-  CLEAN_DOGS,
   GET_DOGS_BY_NAME,
+  CLEAN_DOGS,
   GET_ALL_TEMPERAMENTS,
   FILTER_CREATED,
-  ORDER_NAME,
   FILTER_TEMPERAMENT,
+  ORDER_NAME,
   ORDER_WEIGHT,
-  POST_DOG,
   GET_DETAILS,
   CLEAN_DETAIL,
+  POST_DOG,
 } from "../actions";
 
 const initialState = {
@@ -77,7 +77,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         dogs: temperamentFiltered,
       };
-
     case ORDER_NAME:
       let copy3 = state.allDogs;
       let sortedName =
@@ -92,7 +91,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         dogs: sortedName,
       };
-
     case ORDER_WEIGHT:
       let copy4 = state.allDogs;
       let sortedWeight =
@@ -115,7 +113,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         dogs: sortedWeight,
       };
-
     case GET_DETAILS:
       return {
         ...state,

@@ -39,7 +39,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, height, weight, life_span, temperament, image } = req.body;
+  const { name, height, weight, life_span, temperaments, image } = req.body;
   try {
     if (name) {
       const allDog = await getAllDogs();
@@ -54,7 +54,7 @@ router.post("/", async (req, res) => {
         });
         const temperamentDb = await Temperament.findAll({
           where: {
-            name: temperament,
+            name: temperaments,
           },
         });
         await dog.addTemperament(temperamentDb);

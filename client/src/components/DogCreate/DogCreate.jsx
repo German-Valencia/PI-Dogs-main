@@ -98,8 +98,7 @@ function DogCreate() {
       image: input.image,
       temperaments: input.temperaments,
     };
-    console.log(crear);
-    console.log(input);
+
     if (
       !errors.name &&
       !errors.height_min &&

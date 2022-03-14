@@ -14,8 +14,8 @@ export default function Home() {
 
   //Paginado
   const [currentPage, setCurrentPage] = useState(1);
-  const [dogsPerPage, setDogsPerPage] = useState(8);
-  const [order, setOrder] = useState("");
+  const [dogsPerPage, setDogsPerPage] = useState(8); // eslint-disable-line no-unused-vars
+  const [order, setOrder] = useState(""); // eslint-disable-line no-unused-vars
 
   const indexOfLastDog = currentPage * dogsPerPage;
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;
@@ -69,9 +69,12 @@ export default function Home() {
                         id={e.id}
                         name={e.name}
                         image={e.image}
-                        temperament={e.temperament ? e.temperament: e.temperaments && e.temperaments.map((e)=>
-                        e.name.concat(", ")  
-                        )}                       
+                        temperament={
+                          e.temperament
+                            ? e.temperament
+                            : e.temperaments &&
+                              e.temperaments.map((e) => e.name.concat(", "))
+                        }
                         weight={e.weight}
                       />
                     </div>
