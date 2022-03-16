@@ -17,7 +17,7 @@ function Detail(props) {
       dispatch(cleanDetail(dispatch), cleanDogs(dispatch));
     };
   }, [dispatch, props.match.params.id]);
-
+  console.log(myDog);
   return (
     <div>
       {myDog.length > 0 ? (
@@ -36,8 +36,8 @@ function Detail(props) {
               <p className={styles.p}>
                 {myDog[0].temperament
                   ? myDog[0].temperament
-                    ? myDog[0].temperaments
-                    : myDog[0].temperaments.map((e) => e.name.concat(", "))
+                    : myDog[0].temperaments
+                    ? myDog[0].temperaments?.map((e) => e.name.concat(", "))
                   : "Temperament Not Avaliable"}
               </p>
             </div>

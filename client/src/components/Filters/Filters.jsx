@@ -28,7 +28,7 @@ const Filters = ({ setCurrentPage, setOrder }) => {
     e.preventDefault();
     dispatch(orderName(e.target.value));
     setCurrentPage(1);
-    setOrder(e.target.value)
+    setOrder(e.target.value);
   };
 
   const handleFilterTemperament = (e) => {
@@ -83,42 +83,15 @@ const Filters = ({ setCurrentPage, setOrder }) => {
 
       <div>
         <h4 className={styles.h4}>Order</h4>
-        <select className={styles.select}>
-          <option className={styles.order}>Choose order...</option>
+        <select className={styles.select} onChange={(e) => {handleOrderWeight(e)}}>          
           <option className={styles.order}>Weight</option>
-          <option
-            value="asc"
-            onClick={(e) => {
-              handleOrderWeight(e);
-            }}
-          >
-            ASC
-          </option>
-          <option
-            value="desc"
-            onClick={(e) => {
-              handleOrderWeight(e);
-            }}
-          >
-            DESC
-          </option>
+          <option value="asc"  >ASC</option>
+          <option value="desc" >DESC</option>
+        </select>
+        <select className={styles.select} onChange={(e) => {handleOrderName(e)}}>
           <option className={styles.order}>Alphabetically</option>
-          <option
-            value="asc"
-            onClick={(e) => {
-              handleOrderName(e);
-            }}
-          >
-            A-Z
-          </option>
-          <option
-            value="desc"
-            onClick={(e) => {
-              handleOrderName(e);
-            }}
-          >
-            Z-A
-          </option>
+          <option value="asc"  >A-Z</option>
+          <option value="desc" >Z-A</option>
         </select>
       </div>
     </div>

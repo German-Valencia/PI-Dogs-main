@@ -18,5 +18,32 @@ describe('Dog model', () => {
         Dog.create({ name: 'Pug' });
       });
     });
+
+////////////////////////////////////////////////////////////////////////////
+    
+    describe("weight", () => {
+      it("should throw an error if weight is null", (done) => {
+        Dog.create({})
+          .then(() => done(new Error("notNull Violation: dog.weight cannot be null")))
+          .catch(() => done());
+      });
+      it('should work when its a valid weight value', () => {
+        Dog.create({ weight: '8 - 10' });
+      });
+     });
+  
+    describe("height", () => {
+      it("should throw an error if height is null", (done) => {
+        Dog.create({})
+          .then(() => done(new Error("notNull Violation: dog.height cannot be null")))
+          .catch(() => done());
+      });
+      it('should work when its a valid height value', () => {
+        Dog.create({ height: '25 - 35' });
+      });
+     });
+
+
+
   });
 });
